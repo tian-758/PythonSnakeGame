@@ -1,10 +1,9 @@
 # Import libraries
 import pygame
 import time
-import random
 from enum import Enum
-
 import pygame.display
+from snake_functions import newFruitSpawnLocation
 
 player_speed = 15
 
@@ -32,10 +31,7 @@ snake_pos = [100, 50]
 
 snake_body = [[100,50],[90,50],[80,50],[70,50]]
 
-def newFruitSpawnLocation():
-    return [random.randrange(1, window_x//10) * 10, random.randrange(1, window_y//10) * 10]
-
-fruit_pos = newFruitSpawnLocation()
+fruit_pos = newFruitSpawnLocation(window_x, window_y, snake_body)
 
 fruit_spawn = True
 
@@ -117,7 +113,7 @@ while True:
         snake_body.pop()
 
     if not fruit_spawn:
-        fruit_pos = newFruitSpawnLocation()
+        fruit_pos = newFruitSpawnLocation(window_x, window_y, snake_body)
 
     fruit_spawn = True
     game_window.fill(black)
